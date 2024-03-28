@@ -49,14 +49,15 @@ namespace ParamValueCopy
 		}
         #endregion
 
-
         /// <summary>
         /// Method returns list with Category names stored in sorted "List<string>" variable
         /// </summary>
         /// <param name="doc">Gets Revit document</param>
         /// <returns>List of category names</returns>
-        public List<string> StoreDocCategories(Document doc)
+        public List<string> StoreDocCategories()
 		{
+        	UIDocument uidoc = this.ActiveUIDocument;
+			Document doc = uidoc.Document;
     		Categories categories = doc.Settings.Categories;
     		List<string> catList = new List<string>();
     		
@@ -92,16 +93,17 @@ namespace ParamValueCopy
 		public void ShowCategories()
 		{
 			//List<string> catList = new List<string> {"string1", "string2", "string3"};
-			UIDocument uidoc = this.ActiveUIDocument;
-			Document doc = uidoc.Document;
-			List<string> categoryList = StoreDocCategories(doc);
+			List<string> categoryList = StoreDocCategories();
 						
 			TaskDialog.Show("All categories", "List of categories in project: \n\n" + OutputFormatter(categoryList));
 		}
+
 		
 		public void ShowWindow()
 		{
-			MainWindow window1 = new MainWindow();
+			List<string> categoryList = StoreDocCategories();
+			
+			MainWindow window1 = new MainWindow(categoryList);
 			window1.Show();
 		}
 	}

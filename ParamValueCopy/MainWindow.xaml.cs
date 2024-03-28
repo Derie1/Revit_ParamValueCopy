@@ -22,10 +22,16 @@ namespace ParamValueCopy
 	/// Interaction logic for Window1.xaml
 	/// </summary>
 	public partial class MainWindow : Window
-	{
-		public MainWindow()
+	{		
+		public MainWindow(List<string> catList)
 		{
-			InitializeComponent();
-		}
-	}
+			InitializeComponent();			
+			categoryComboBox.ItemsSource = catList;
+        }
+		
+        private void btnQuit_Click(object sender, RoutedEventArgs e)
+        {
+			Close();
+        }
+    }
 }

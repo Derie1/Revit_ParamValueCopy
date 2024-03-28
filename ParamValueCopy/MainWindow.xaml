@@ -1,0 +1,62 @@
+﻿<Window x:Class="ParamValueCopy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ParamValueCopy"
+        mc:Ignorable="d"
+        Title="Copy parameter value" Height="450" Width="800">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Category select..." Margin="20,35,20,0" VerticalAlignment="Top"  />
+        <ComboBox x:Name="categoryComboBox" VerticalAlignment="Top" Margin="20,60,50,0" />
+
+        <Label Content="Parameter name" Margin="20,115,20,0" VerticalAlignment="Top" />
+        <ComboBox x:Name="parameterComboBox" VerticalAlignment="Top" Margin="20,140,50,0" />
+
+        <CheckBox x:Name="useFilter" Content="Use filter" HorizontalAlignment="Left" Margin="20,210,0,0" 
+                  VerticalAlignment="Top" IsChecked="False" />
+        <Label Content="Filter type" Margin="20,235,20,0" VerticalAlignment="Top"/>
+        <Label Content="Filter" Margin="170,235,20,0" VerticalAlignment="Top" />
+        
+        <ComboBox x:Name="filterType" VerticalAlignment="Top" Margin="20,260,250,0" 
+                  IsEnabled="{Binding ElementName=useFilter, Path=IsChecked, TargetNullValue=false}" />
+        <TextBox x:Name="filter" HorizontalAlignment="Left" Margin="170,261,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="180" FontSize="14" 
+                 IsEnabled="{Binding ElementName=useFilter, Path=IsChecked, TargetNullValue=false}" />
+
+        <Button x:Name="btnQuit" Grid.Column="1" Content="Close" HorizontalAlignment="Left" Margin="300,0,0,0" 
+                Grid.Row="1" VerticalAlignment="Center" FontSize="16" Width="80" />
+        <Button x:Name="btnTransfer" Grid.Column="1" Content="Transfer" HorizontalAlignment="Left" Grid.Row="1" 
+                VerticalAlignment="Center" FontSize="16" Width="80" Margin="200,0,0,0"/>
+
+
+        <Label Grid.Column="1" Content="Parameter name" HorizontalAlignment="Left" Margin="50,35,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="targetParameterComboBox" Grid.Column="1" Margin="50,60,20,0" VerticalAlignment="Top"/>
+
+        <CheckBox x:Name="prefixCheckBox" Grid.Column="1" Content="Use prefix" 
+                  HorizontalAlignment="Left" Margin="50,125,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <TextBox x:Name="prefixTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="50,145,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" FontSize="14" ToolTip="Type prefix to add to parameter's value" 
+                 IsEnabled="{Binding ElementName=prefixCheckBox, Path=IsChecked, TargetNullValue=false}"/>
+
+        <CheckBox x:Name="suffixCheckBox" Grid.Column="1" Content="Use suffix" 
+          HorizontalAlignment="Left" Margin="250,125,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <TextBox x:Name="suffixTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="250,145,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" FontSize="14" ToolTip="Type suffix to add to parameter's value" 
+                 IsEnabled="{Binding ElementName=suffixCheckBox, Path=IsChecked, TargetNullValue=false}"/>
+
+        <CheckBox x:Name="eraseSourceValue" Grid.Column="1" Content="Erase source parameter's value" 
+                HorizontalAlignment="Left" Margin="50,225,0,0" VerticalAlignment="Top" 
+                ToolTip="If checked, then source parameter's value will be erased"/>
+        
+    </Grid>
+</Window>
